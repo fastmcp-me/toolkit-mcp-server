@@ -1,3 +1,5 @@
+import { ProgressReporter } from './utils/progress.js';
+
 export interface GeoLocation {
   query: string;
   status: string;
@@ -50,13 +52,18 @@ export interface TimezoneConversionResult {
 
 export type HashAlgorithm = 'md5' | 'sha1' | 'sha256' | 'sha512';
 
+export interface ToolContent {
+  type: string;
+  text: string;
+}
+
+export interface ToolResponse {
+  content: ToolContent[];
+  isError?: boolean;
+}
+
 export interface ToolHandler {
-  (args: any): Promise<{
-    content: Array<{
-      type: string;
-      text: string;
-    }>;
-  }>;
+  (args: any, progress?: ProgressReporter): Promise<ToolResponse>;
 }
 
 export interface Tool {
