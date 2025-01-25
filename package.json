@@ -1,0 +1,39 @@
+{
+  "name": "toolkit-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server providing system, network, geolocation, generator, datetime, and security tools",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "start": "node build/index.js",
+    "dev": "ts-node --esm src/index.ts",
+    "clean": "rm -rf build",
+    "rebuild": "npm run clean && npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "server",
+    "toolkit",
+    "system",
+    "network",
+    "geolocation",
+    "generator",
+    "datetime",
+    "security"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest",
+    "@types/luxon": "latest",
+    "@types/node": "latest",
+    "luxon": "latest",
+    "qrcode": "latest",
+    "typescript": "latest"
+  },
+  "devDependencies": {
+    "@types/qrcode": "latest",
+    "ts-node": "latest"
+  }
+}
