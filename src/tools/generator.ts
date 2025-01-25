@@ -1,5 +1,12 @@
 import { randomUUID } from 'node:crypto';
 import QRCode from 'qrcode';
+import qrcodeTerminal from 'qrcode-terminal';
+import { promisify } from 'util';
+
+// Promisify qrcode-terminal.generate
+const generateTerminalQR = promisify((text: string, opts: any, cb: (error: Error | null, result: string) => void) => {
+  qrcodeTerminal.generate(text, opts, (result: string) => cb(null, result));
+});
 
 export const generatorTools = {
   generateUUID: {
@@ -44,22 +51,27 @@ export const generatorTools = {
       },
       required: ['data']
     },
-    handler: async ({ 
-      data, 
-      type = 'terminal', 
-      errorCorrectionLevel = 'M' 
-    }: { 
-      data: string; 
-      type?: 'terminal' | 'svg' | 'base64'; 
-      errorCorrectionLevel?: 'L' | 'M' | 'Q' | 'H' 
+    handler: async ({
+      data,
+      type = 'terminal',
+      errorCorrectionLevel = 'M'
+    }: {
+      data: string;
+      type?: 'terminal' | 'svg' | 'base64';
+      errorCorrectionLevel?: 'L' | 'M' | 'Q' | 'H'
     }) => {
       try {
         let result: string;
-        const options = { errorCorrectionLevel };
+        const options = {
+          errorCorrectionLevel,
+          margin: 1,
+          width: type === 'svg' ? 200 : undefined
+        };
 
         switch (type) {
           case 'terminal':
-            result = await QRCode.toString(data, options);
+            // Use qrcode-terminal for better terminal output
+            result = await generateTerminalQR(data, { small: true });
             break;
           case 'svg':
             result = await QRCode.toString(data, { ...options, type: 'svg' });
