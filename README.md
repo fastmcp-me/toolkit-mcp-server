@@ -7,7 +7,15 @@
 [![Status](https://img.shields.io/badge/Status-Stable-blue.svg)]()
 [![GitHub](https://img.shields.io/github/stars/cyanheads/toolkit-mcp-server?style=social)](https://github.com/cyanheads/toolkit-mcp-server)
 
-A high-performance Model Context Protocol server providing system utilities, network diagnostics, and developer tools. Built with TypeScript and featuring efficient caching, rate limiting, and comprehensive error handling.
+A Model Context Protocol server providing LLM Agents with system utilities and tools, including IP geolocation, network diagnostics, system monitoring, cryptographic operations, and QR code generation.
+
+## Model Context Protocol
+
+The Model Context Protocol (MCP) enables communication between:
+
+- **Clients**: Claude Desktop, IDEs, and other MCP-compatible clients
+- **Servers**: Tools and resources for task management and automation
+- **LLM Agents**: AI models that leverage the server's capabilities
 
 ## Table of Contents
 
